@@ -43,7 +43,7 @@ def load_data(nrows, filterName):
 
     global verifySearch 
     st.session_state["Filter"] = filterName
-    data = pd.read_csv("MML_Main.csv", nrows=nrows)
+    data = pd.read_csv("MML_Data/MML_Main.csv", nrows=nrows)
     data = data.filter(items=["#","ML SCORE","MAIN LIST","VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
     data = data.rename(columns={"MAIN LIST":"CHALLENGE"})
