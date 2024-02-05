@@ -6,6 +6,9 @@ st.set_page_config(layout='wide')
 if "Filter" not in st.session_state:
     st.session_state["Filter"] = "None"
 
+if "List" not in st.session_state:
+    st.session_state["List"] = "MML_Data/MML_Main.csv"
+
 st.markdown(
     """
         <style>
@@ -27,7 +30,6 @@ def local_css(file_name):
 local_css("MML_Data/style.css")
 
 filter = "None"
-csvFile = "MML_Data/MML_Main.csv"
 global data
 
 st.sidebar.subheader("Searches:")
@@ -39,7 +41,10 @@ verifySearch = st.sidebar.text_input("Verifier")
 test = 400
 
 def change_list():
-    csvFile = "MML_Data/Unlimited.csv"
+    if st.session_state["List"] == "MML_Data/MML_Main.csv":
+        st.session_state["List"] = "MML_Data/Unlimited.csv"
+    elif st.session_state["List"] == "MML_Data/Unlimited.csv":
+        st.session_state["List"] = "MML_Data/MML_Main.csv"
 
 def load_data(nrows, filterName):
     global data
@@ -47,7 +52,7 @@ def load_data(nrows, filterName):
 
     global verifySearch 
     st.session_state["Filter"] = filterName
-    data = pd.read_csv(csvFile, nrows=nrows)
+    data = pd.read_csv(st.session_state["List"], nrows=nrows)
     data = data.filter(items=["#","ML SCORE","MAIN LIST","VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
     data = data.rename(columns={"MAIN LIST":"CHALLENGE"})
