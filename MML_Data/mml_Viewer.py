@@ -63,7 +63,7 @@ def load_data(nrows, filterName):
         ScoreCol = "UL SCORE"
     
     data = pd.read_csv(st.session_state["List"], nrows=nrows)
-    data = data.filter(items=["#","ML SCORE","MAIN LIST","VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
+    data = data.filter(items=["#",ScoreCol,ChalCol,"VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
     data = data.rename(columns={"MAIN LIST":"CHALLENGE"})
     data = data.loc[data['VIDEO GAME'].isnull() == False, :]
