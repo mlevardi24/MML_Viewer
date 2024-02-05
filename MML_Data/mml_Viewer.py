@@ -49,9 +49,19 @@ def change_list():
 def load_data(nrows, filterName):
     global data
     global ML_table
-
-    global verifySearch 
+    global verifySearch
+    
     st.session_state["Filter"] = filterName
+
+    ChalCol = "MAIN LIST"
+    ScoreCol = "ML SCORE"
+    if st.session_state["List"] == "MML_Data/MML_Main.csv":
+        ChalCol = "MAIN LIST"
+        ScoreCol = "ML SCORE"
+    elif st.session_state["List"] == "MML_Data/Unlimited.csv":
+        ChalCol = "UNLIMITED LIST"
+        ScoreCol = "UL SCORE"
+    
     data = pd.read_csv(st.session_state["List"], nrows=nrows)
     data = data.filter(items=["#","ML SCORE","MAIN LIST","VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
