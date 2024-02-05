@@ -38,6 +38,9 @@ creatorSearch = st.sidebar.text_input("Creator")
 verifySearch = st.sidebar.text_input("Verifier")
 test = 400
 
+def change_list():
+    csvFile = "MML_Data/Unlimited.csv"
+
 def load_data(nrows, filterName):
     global data
     global ML_table
@@ -118,4 +121,4 @@ with st.sidebar:
 global ML_table
 ML_table = st.dataframe(data, width=2000, height=700)
 
-st.button("Unlimited List")
+st.button("Unlimited List", on_click=change_list)
