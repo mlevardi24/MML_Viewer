@@ -27,6 +27,7 @@ def local_css(file_name):
 local_css("MML_Data/style.css")
 
 filter = "None"
+csvFile = "MML_Data/MML_Main.csv"
 global data
 
 st.sidebar.subheader("Searches:")
@@ -43,7 +44,7 @@ def load_data(nrows, filterName):
 
     global verifySearch 
     st.session_state["Filter"] = filterName
-    data = pd.read_csv("MML_Data/MML_Main.csv", nrows=nrows)
+    data = pd.read_csv(csvFile, nrows=nrows)
     data = data.filter(items=["#","ML SCORE","MAIN LIST","VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
     data = data.rename(columns={"MAIN LIST":"CHALLENGE"})
