@@ -116,3 +116,5 @@ with st.sidebar:
 
 global ML_table
 ML_table = st.dataframe(data, width=2000, height=700)
+
+st.button("Unlimited List")
