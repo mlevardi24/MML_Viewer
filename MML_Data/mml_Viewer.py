@@ -65,7 +65,7 @@ def load_data(nrows, filterName):
     data = pd.read_csv(st.session_state["List"], nrows=nrows)
     data = data.filter(items=["#",ScoreCol,ChalCol,"VIDEO GAME","DEVELOPER","VERSION","VERIFIER"])
     data = data.rename(columns={"#":"PLACEMENT"})
-    data = data.rename(columns={"MAIN LIST":"CHALLENGE"})
+    data = data.rename(columns={ChalCol:"CHALLENGE"})
     data = data.loc[data['VIDEO GAME'].isnull() == False, :]
     if filterName == "Top150":
         data = data.query('PLACEMENT <= 150')
