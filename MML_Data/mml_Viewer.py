@@ -146,6 +146,6 @@ with st.sidebar:
 
 
 global ML_table
-ML_table = st.dataframe(data, width=2000, height=700)
+ML_table = st.dataframe(data, width=2000, height=650)
 
 st.button(st.session_state["ButtonText"], on_click=change_list)
