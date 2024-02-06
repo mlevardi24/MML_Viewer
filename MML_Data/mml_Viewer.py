@@ -9,6 +9,12 @@ if "Filter" not in st.session_state:
 if "List" not in st.session_state:
     st.session_state["List"] = "MML_Data/MML_Main.csv"
 
+if "ListTitle" not in st.session_state:
+    st.session_state["ListTitle"] = "Max Mode List (ML)"
+
+if "ButtonText" not in st.session_state:
+    st.session_state["ButtonText"] = "Unlimited List"
+    
 st.markdown(
     """
         <style>
@@ -42,8 +48,12 @@ verifySearch = st.sidebar.text_input("Verifier")
 def change_list():
     if st.session_state["List"] == "MML_Data/MML_Main.csv":
         st.session_state["List"] = "MML_Data/Unlimited.csv"
+        st.session_state["ListTitle"] = "Max Mode List (UL)"
+        st.session_state["ButtonText"] = "Main List"
     elif st.session_state["List"] == "MML_Data/Unlimited.csv":
         st.session_state["List"] = "MML_Data/MML_Main.csv"
+        st.session_state["ListTitle"] = "Max Mode List (ML)"
+        st.session_state["ButtonText"] = "Unlimited List"
 
 def load_data(nrows, filterName):
     global data
@@ -103,7 +113,7 @@ def load_data(nrows, filterName):
     
 data = load_data(400, st.session_state["Filter"])
 
-st.title('Max Mode List (ML)')
+st.title(st.session_state["ListTitle"])
 
 st.divider()
 
@@ -138,4 +148,4 @@ with st.sidebar:
 global ML_table
 ML_table = st.dataframe(data, width=2000, height=700)
 
-st.button("Unlimited List", on_click=change_list)
+st.button(st.session_state["ButtonText"], on_click=change_list)
