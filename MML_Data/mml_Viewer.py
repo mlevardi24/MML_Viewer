@@ -38,7 +38,6 @@ chalSearch = st.sidebar.text_input("Challenge")
 placeSearch = st.sidebar.text_input("Placement")
 creatorSearch = st.sidebar.text_input("Creator")
 verifySearch = st.sidebar.text_input("Verifier")
-test = 400
 
 def change_list():
     if st.session_state["List"] == "MML_Data/MML_Main.csv":
@@ -72,7 +71,7 @@ def load_data(nrows, filterName):
     elif filterName == "Legacy":
         data = data.query('PLACEMENT > 150')
     elif filterName == "400Pt":
-        data = data.query("`ScoreCol` == {0}".format(test, ScoreCol))
+        data = data.query("`{0}` == 400".format(ScoreCol))
     elif filterName == "200Pt":
         data = data.query('`{0}` == 200'.format(ScoreCol))
     elif filterName == "100Pt":
