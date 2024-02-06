@@ -67,6 +67,8 @@ def load_data(nrows, filterName):
     data = data.rename(columns={ChalCol:"CHALLENGE"})
     data = data.loc[data['VIDEO GAME'].isnull() == False, :]
     data.loc[data['DEVELOPER'].isnull(), 'DEVELOPER'] = 'N/A'
+    data.loc[data['VERSION'].isnull(), 'VERSION'] = 'N/A'
+    data.loc[data['VERIFIER'].isnull(), 'VERIFIER'] = 'N/A'
     if filterName == "Top150":
         data = data.query('PLACEMENT <= 150')
     elif filterName == "Legacy":
