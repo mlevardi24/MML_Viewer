@@ -72,23 +72,23 @@ def load_data(nrows, filterName):
     elif filterName == "Legacy":
         data = data.query('PLACEMENT > 150')
     elif filterName == "400Pt":
-        data = data.query("`ScoreCol` == {0}".format(test))
+        data = data.query("`ScoreCol` == {0}".format(test, ScoreCol))
     elif filterName == "200Pt":
-        data = data.query('`ScoreCol` == 200')
+        data = data.query('`{0}` == 200'.format(ScoreCol))
     elif filterName == "100Pt":
-        data = data.query('`ScoreCol` == 100')
+        data = data.query('`{0}` == 100'.format(ScoreCol))
     elif filterName == "50Pt":
-        data = data.query('`ScoreCol` == 50')
+        data = data.query('`{0}` == 50'.format(ScoreCol))
     elif filterName == "25Pt":
-        data = data.query('`ScoreCol` == 25')
+        data = data.query('`{0}` == 25'.format(ScoreCol))
     elif filterName == "12Pt":
-        data = data.query('`ScoreCol` == 12')
+        data = data.query('`{0}` == 12'.format(ScoreCol))
     elif filterName == "6Pt":
-        data = data.query('`ScoreCol` == 6')
+        data = data.query('`{0}` == 6'.format(ScoreCol))
     elif filterName == "3Pt":
-        data = data.query('`ScoreCol` == 3')
+        data = data.query('`{0}` == 3'.format(ScoreCol))
     elif filterName == "0Pt":
-        data = data.query('`ScoreCol` == 0')
+        data = data.query('`{0}` == 0'.format(ScoreCol))
     elif filterName == "Search":
         data = data.query("`VIDEO GAME`.str.contains('{0}', case=False)".format(gameSearch), engine='python')
         data = data.query("`CHALLENGE`.str.contains('{0}', case=False)".format(chalSearch), engine='python')
